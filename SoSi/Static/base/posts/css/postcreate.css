@@ -1,0 +1,15 @@
+
+.create-post-box {
+    width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
+}
+
+.create-post-box textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+}

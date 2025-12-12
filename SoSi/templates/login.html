@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <h3 class="mb-3">Login</h3>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button class="btn btn-primary w-100" type="submit">Login</button>
+    </form>
+
+    <div class="text-center mt-3">
+      <p>
+        New user?
+        <a href="{% url 'SoSi:register' %}" class="text-decoration-none">
+          Create an account
+        </a>
+      </p>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

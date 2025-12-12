@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    {% include 'includes/postcard.html' %}
+    <hr>
+    <h5>Comments</h5>
+    {% for comment in post.comments.all %}
+      <div class="mb-2">
+        <strong>{{ comment.author.username }}</strong> <small class="text-muted">{{ comment.created_at|date:"M d, Y H:i" }}</small>
+        <p>{{ comment.content|linebreaks }}</p>
+      </div>
+    {% empty %}
+      <p>No comments yet.</p>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+      <form method="post" action="{% url 'SoSi:add_comment' post.pk %}">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button class="btn btn-primary" type="submit">Add comment</button>
+      </form>
+    {% else %}
+      <p><a href="{% url 'login' %}">Log in</a> to comment.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

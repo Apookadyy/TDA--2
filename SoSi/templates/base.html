@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}SocialSite{% endblock %}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+  <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold" href="{% url 'SoSi:index' %}">
+      SocialSite
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-center">
+
+        {% if user.is_authenticated %}
+
+          <!-- Profile Link -->
+          <li class="nav-item me-2">
+            <a class="btn btn-outline-secondary btn-sm"
+              href="{% url 'SoSi:profile' username=user.username %}">
+              {{ user.username }}
+            </a>
+          </li>
+
+          <!-- Create Post -->
+          <li class="nav-item me-2">
+            <a class="btn btn-outline-primary btn-sm"
+              href="{% url 'SoSi:post_create' %}">
+              + New Post
+            </a>
+          </li>
+
+          <!-- Logout -->
+          <li class="nav-item">
+            <a class="btn btn-danger btn-sm" href="{% url 'SoSi:logout' %}">
+              Logout
+            </a>
+          </li>
+
+        {% else %}
+
+          <!-- Login -->
+          <li class="nav-item me-2">
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'SoSi:login' %}">
+              Login
+            </a>
+          </li>
+
+          <!-- Register -->
+          <li class="nav-item">
+            <a class="btn btn-primary btn-sm" href="{% url 'SoSi:register' %}">
+              Register
+            </a>
+          </li>
+
+        {% endif %}
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<!-- FLASH MESSAGES -->
+<div class="container">
+  {% if messages %}
+    {% for m in messages %}
+      <div class="alert alert-{{ m.tags|default:'info' }} alert-dismissible fade show" role="alert">
+        {{ m }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+
+<!-- CONTENT -->
+<div class="container mb-5">
+  {% block content %}{% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

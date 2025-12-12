@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<img src="{{ user.profile.profile_pic.url }}" class="profile-pic">
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body text-center">
+        {% if profile_user.profile.avatar %}
+          <img src="{{ profile_user.profile.avatar.url }}" class="rounded-circle mb-2" width="120" height="120">
+        {% else %}
+          <div class="bg-secondary rounded-circle mb-2" style="width:120px;height:120px;"></div>
+        {% endif %}
+        <h5>{{ profile_user.username }}</h5>
+        <p>{{ profile_user.profile.bio|default:"No bio yet." }}</p>
+        {% if user == profile_user %}
+          <hr>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ pform.as_p }}
+            <button class="btn btn-primary" type="submit">Update profile</button>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <h4>Posts by {{ profile_user.username }}</h4>
+    {% for post in posts %}
+      {% include 'SoSi/includes/post_card.html' %}
+    {% empty %}
+      <p>No posts yet.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

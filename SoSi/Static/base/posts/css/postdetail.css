@@ -1,0 +1,12 @@
+
+.post-detail-box {
+    width: 650px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.comment-list {
+    margin-top: 20px;
+}

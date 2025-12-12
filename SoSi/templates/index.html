@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <h3>Feed</h3>
+
+    {% if user.is_authenticated %}
+    <div class="card mb-3">
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data" action="{% url 'SoSi:post_create' %}">
+          {% csrf_token %}
+          {{ post_form.as_p }}
+          <button class="btn btn-primary" type="submit">Post</button>
+        </form>
+      </div>
+    </div>
+    {% endif %}
+
+    {% for post in posts %}
+    {% include 'includes/postcard.html' %}
+    {% empty %}
+      <p>No posts yet.</p>
+    {% endfor %}
+  </div>
+
+  <div class="col-md-4">
+    <h5>Who to follow</h5>
+    <ul class="list-group">
+      {% for u in users %}
+        <li class="list-group-item">{{ u.username }}</li>
+      {% empty %}
+        <li class="list-group-item">—</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

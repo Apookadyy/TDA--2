@@ -1,0 +1,29 @@
+ 
+/* Layout (navbar + spacing) */
+
+.navbar {
+    background: white;
+    padding: 12px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-right .nav-item {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.main-content {
+    margin-top: 30px;
+}
