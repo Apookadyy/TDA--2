@@ -141,7 +141,4 @@ Run tests using:
 
 ------------------------------------------------------------------------
 
-## 💬 Support
-
-Feel free to reach out if you need help!
 
