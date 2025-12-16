@@ -138,15 +138,6 @@ Run tests using:
 
 ------------------------------------------------------------------------
 
-## 🤝 Contributing
-
-Pull requests are welcome. Open an issue for major changes.
-
-------------------------------------------------------------------------
-
-## 📜 License
-
-This project is licensed under the **MIT License**.
 
 ------------------------------------------------------------------------
 
